@@ -33,14 +33,16 @@ def main(page: ft.Page):
 
         def delete_task(_):
             main_db.delete_task(task_id)
+            task_list.controls.remove(row)
             page.update()
 
         delete_button = ft.IconButton(icon=ft.Icons.DELETE, on_click=delete_task, tooltip='Удаление', icon_color=ft.Colors.RED)
 
-        return ft.Row(
+        row = ft.Row(
             [task_field, enable_button, save_button, delete_button], alignment=ft.MainAxisAlignment.SPACE_BETWEEN
         )    
 
+        return row
     
     def add_task(_):
         if task_input.value:
